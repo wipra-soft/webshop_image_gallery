@@ -1,0 +1,109 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-05-27 18:22:29.124340",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "gallery_scope",
+  "published",
+  "section_break_cbtu",
+  "website_item",
+  "item_template",
+  "item_variant",
+  "attribute",
+  "attribute_value",
+  "section_break_rtaw",
+  "images",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "gallery_scope",
+   "fieldtype": "Select",
+   "label": "Gallery Scope",
+   "options": "Website Item\nItem Template\nItem Variant\nAttribute Value"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "Published"
+  },
+  {
+   "fieldname": "section_break_cbtu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "website_item",
+   "fieldtype": "Link",
+   "label": "Website Item",
+   "options": "Website Item"
+  },
+  {
+   "fieldname": "item_template",
+   "fieldtype": "Link",
+   "label": "Item Template",
+   "options": "Item"
+  },
+  {
+   "fieldname": "item_variant",
+   "fieldtype": "Link",
+   "label": "Item Variant",
+   "options": "Item"
+  },
+  {
+   "fieldname": "attribute",
+   "fieldtype": "Link",
+   "label": "Attribute",
+   "options": "Item Attribute"
+  },
+  {
+   "fieldname": "attribute_value",
+   "fieldtype": "Data",
+   "label": "Attribute Value"
+  },
+  {
+   "fieldname": "section_break_rtaw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "images",
+   "fieldtype": "Table",
+   "label": "Images",
+   "options": "Product Gallery Image"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-27 18:54:00.472525",
+ "modified_by": "Administrator",
+ "module": "Webshop Image Gallery",
+ "name": "Product Gallery",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
