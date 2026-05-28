@@ -247,3 +247,9 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+jinja = {
+    "methods": [
+        "webshop_image_gallery.api.gallery.get_website_item_gallery"
+    ]
+}
+

@@ -40,7 +40,7 @@
    "label": "Sort Order"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "is_primary",
    "fieldtype": "Check",
    "in_list_view": 1,
@@ -63,7 +63,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-05-27 18:59:46.756335",
+ "modified": "2026-05-28 10:59:12.949525",
  "modified_by": "Administrator",
  "module": "Webshop Image Gallery",
  "name": "Product Gallery Image",
