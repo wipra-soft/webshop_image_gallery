@@ -1,0 +1,49 @@
+.website-image {
+    cursor: pointer;
+}
+
+.wig-thumbnail {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    padding: 3px;
+    cursor: pointer;
+    background: #fff;
+}
+
+.wig-thumbnail.active {
+    border: 2px solid var(--primary);
+}
+
+.wig-zoom-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1080;
+}
+
+.wig-zoom-view img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.wig-zoom-view button {
+    position: absolute;
+    right: 3rem;
+    top: 2rem;
+}
+
+.wig-zoom-view svg {
+    color: var(--white);
+}
+

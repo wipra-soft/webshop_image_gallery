@@ -253,3 +253,11 @@ jinja = {
     ]
 }
 
+web_include_css = [
+    "/assets/webshop_image_gallery/css/product_gallery.css"
+]
+
+web_include_js = [
+    "/assets/webshop_image_gallery/js/product_gallery.js"
+]
+

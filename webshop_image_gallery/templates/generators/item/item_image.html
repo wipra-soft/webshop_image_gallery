@@ -8,46 +8,40 @@
     {% if gallery_images and gallery_images|length > 1 %}
         <div class="item-slideshow d-flex flex-column mr-3">
             {% for item in gallery_images %}
-                <img class="item-slideshow-image mb-2 {% if loop.first %}active{% endif %}"
+                <img class="wig-thumbnail mb-2 {% if loop.first %}active{% endif %}"
                      src="{{ item.image }}"
                      alt="{{ item.alt_text or doc.website_image_alt or doc.item_name }}">
             {% endfor %}
         </div>
 
-        {{ product_image(gallery_images[0].image, 'product-image', alt=gallery_images[0].alt_text or doc.website_image_alt or doc.item_name) }}
+        {{ product_image(
+            gallery_images[0].image,
+            'product-image',
+            alt=gallery_images[0].alt_text or doc.website_image_alt or doc.item_name
+        ) }}
 
-        <script>
-            frappe.ready(() => {
-                $('.page_content').on('click', '.item-slideshow-image', (e) => {
-                    const $img = $(e.currentTarget);
-                    const link = $img.prop('src');
-                    const $product_image = $('.product-image');
-
-                    $product_image.find('a').prop('href', link);
-                    $product_image.find('img').prop('src', link);
-
-                    $('.item-slideshow-image').removeClass('active');
-                    $img.addClass('active');
-                });
-            })
-        </script>
     {% elif gallery_images and gallery_images|length == 1 %}
-        {{ product_image(gallery_images[0].image, alt=gallery_images[0].alt_text or doc.website_image_alt or doc.item_name) }}
+        {{ product_image(
+            gallery_images[0].image,
+            alt=gallery_images[0].alt_text or doc.website_image_alt or doc.item_name
+        ) }}
+
     {% elif slides %}
         <div class="item-slideshow d-flex flex-column mr-3">
             {% for item in slides %}
-                <img class="item-slideshow-image mb-2 {% if loop.first %}active{% endif %}"
+                <img class="wig-thumbnail mb-2 {% if loop.first %}active{% endif %}"
                      src="{{ item.image }}"
                      alt="{{ item.heading }}">
             {% endfor %}
         </div>
 
         {{ product_image(slides[0].image, 'product-image') }}
+
     {% else %}
         {{ product_image(doc.website_image, alt=doc.website_image_alt or doc.item_name) }}
     {% endif %}
 
-    <div class="image-zoom-view" style="display: none;">
+    <div class="wig-zoom-view">
         <button type="button" class="close" aria-label="Close">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                  viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -59,88 +53,3 @@
         </button>
     </div>
 </div>
-
-<style>
-    .website-image {
-        cursor: pointer;
-    }
-
-    .item-slideshow-image {
-        width: 64px;
-        height: 64px;
-        object-fit: contain;
-        border: 1px solid var(--gray-300);
-        border-radius: 6px;
-        padding: 3px;
-        cursor: pointer;
-        background: #fff;
-    }
-
-    .item-slideshow-image.active {
-        border: 2px solid var(--primary);
-    }
-
-    .image-zoom-view {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: rgba(0, 0, 0, 0.8);
-        z-index: 1080;
-    }
-
-    .image-zoom-view img {
-        max-height: 100%;
-        max-width: 100%;
-    }
-
-    .image-zoom-view button {
-        position: absolute;
-        right: 3rem;
-        top: 2rem;
-    }
-
-    .image-zoom-view svg {
-        color: var(--white);
-    }
-</style>
-
-<script>
-    frappe.ready(() => {
-        const $zoom_wrapper = $('.image-zoom-view');
-
-        $('.website-image').on('click', (e) => {
-            e.preventDefault();
-            const $img = $(e.target);
-            const src = $img.prop('src');
-            if (!src) return;
-            show_preview(src);
-        });
-
-        $zoom_wrapper.on('click', 'button', hide_preview);
-
-        $(document).on('keydown', (e) => {
-            if (e.key === 'Escape') {
-                hide_preview();
-            }
-        });
-
-        function show_preview(src) {
-            $zoom_wrapper.show();
-            const $img = $(`<img src="${src}">`);
-            $zoom_wrapper.append($img);
-        }
-
-        function hide_preview() {
-            $zoom_wrapper.find('img').remove();
-            $zoom_wrapper.hide();
-        }
-    })
-</script>
-
