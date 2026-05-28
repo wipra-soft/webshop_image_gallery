@@ -13,6 +13,7 @@ class ProductGallery(Document):
         self.validate_item_template()
         self.validate_item_variant()
         self.validate_attribute_value_scope()
+        self.validate_gallery_images()
         self.set_image_defaults()
         self.validate_primary_image()
 
@@ -99,6 +100,13 @@ class ProductGallery(Document):
 
         if not self.attribute_value:
             frappe.throw(_("Attribute Value is required for Attribute Value gallery."))
+
+    def validate_gallery_images(self):
+        for row in self.images or []:
+            if not row.image and not row.get("image_url"):
+                frappe.throw(
+                    _("Row #{0}: Either Image or Image URL is required.").format(row.idx)
+                )
 
     def set_image_defaults(self):
         for index, row in enumerate(self.images or [], start=1):

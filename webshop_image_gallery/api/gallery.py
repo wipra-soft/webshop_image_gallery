@@ -43,8 +43,13 @@ def get_website_item_gallery(website_item):
             if not cint(row.published):
                 continue
 
+            image_url = row.image or row.get("image_url")
+
+            if not image_url:
+                continue
+
             images.append({
-                "image": row.image,
+                "image": image_url,
                 "alt_text": row.alt_text or "",
                 "sort_order": cint(row.sort_order),
                 "is_primary": cint(row.is_primary),
