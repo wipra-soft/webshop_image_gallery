@@ -249,7 +249,8 @@ app_license = "mit"
 
 jinja = {
     "methods": [
-        "webshop_image_gallery.api.gallery.get_website_item_gallery"
+        "webshop_image_gallery.api.gallery.get_website_item_gallery",
+        "webshop_image_gallery.api.gallery.get_website_item_card_image",
     ]
 }
 
@@ -261,3 +262,7 @@ web_include_js = [
     "/assets/webshop_image_gallery/js/product_gallery.js"
 ]
 
+override_whitelisted_methods = {
+    "webshop.templates.pages.product_search.get_product_list": "webshop_image_gallery.api.product_search.get_product_list",
+    "webshop.webshop.api.get_product_filter_data": "webshop_image_gallery.api.product_search.get_product_filter_data",
+}

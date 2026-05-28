@@ -75,6 +75,59 @@ def get_website_item_gallery(website_item):
     return _get_fallback_gallery(website_item)
 
 
+def get_website_item_card_image(item):
+    """
+    Return the best image for Webshop listing cards.
+
+    Resolution order:
+    1. Product Gallery primary/first published image
+    2. Website Item.website_image
+    3. Website Item.thumbnail
+    """
+
+    if not item:
+        return None
+
+    website_item = _get_value(item, "name")
+    route = _get_value(item, "route")
+    item_code = _get_value(item, "item_code")
+
+    fallback_image = _get_value(item, "website_image") or _get_value(item, "thumbnail")
+
+    if not website_item:
+        filters = {"published": 1}
+
+        if route:
+            filters["route"] = route
+        elif item_code:
+            filters["item_code"] = item_code
+
+        if len(filters) > 1:
+            website_item = frappe.db.get_value(
+                "Website Item",
+                filters,
+                "name",
+                order_by="modified desc",
+            )
+
+    if not website_item:
+        return fallback_image
+
+    gallery = get_website_item_gallery(website_item)
+    images = gallery.get("images") if gallery else None
+
+    if images:
+        return images[0].get("image")
+
+    return fallback_image
+
+
+def _get_value(data, key):
+    if hasattr(data, "get"):
+        return data.get(key)
+
+    return getattr(data, key, None)
+
 def _get_fallback_gallery(website_item):
     website_item_data = frappe.db.get_value(
         "Website Item",
